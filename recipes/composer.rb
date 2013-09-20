@@ -17,18 +17,26 @@
 # limitations under the License.
 #
 
-settings = Zf2.settings(node)
+#node = Zf2.node(node)
+
+Chef::Log.info 'Running composer install'
+
+
+directory node['zf2']['deploy_to'] do
+  recursive true
+  action :create
+end
+
 
 include_recipe 'composer'
 
 
+#directory "#{node['zf2']['deploy_to']}/vendor" do
+#  mode 0755
+#  action :create
+#end
 
-Chef::Log.info 'Running composer install'
-directory "#{settings['zf2']['deploy_to']}/vendor" do
-  mode 0755
-end
-
-execute "php composer.phar install -n" do
-  cwd settings['zf2']['deploy_to']
-end
+#execute "php composer.phar install -n" do
+#  cwd node['zf2']['deploy_to']
+#end
 

@@ -17,7 +17,7 @@
 # limitations under the License.
 #
 
-settings = Zf2.settings(node)
+#node = Zf2.node(node)
 
 include_recipe 'apache2'
 include_recipe 'apache2::mod_alias'
@@ -31,7 +31,8 @@ include_recipe 'apache2::mod_rewrite'
 include_recipe 'apache2::mod_php5'
 
 web_app 'zf2.dev' do
-  server_name settings['hostname']
-  server_aliases [settings['fqdn'], 'zf2.dev']
-  docroot settings['zf2']['doc_root']
+  server_name node['hostname']
+  server_aliases [node['fqdn'], 'zf2.dev']
+  docroot node['zf2']['doc_root']
+  template node['zf2']['apache']['template']
 end

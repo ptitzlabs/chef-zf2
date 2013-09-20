@@ -23,6 +23,8 @@ default['zf2']['deploy_to']             = '/srv/zf2'
 
 default['zf2']['doc_root']              = "#{node['zf2']['deploy_to']}/public"
 
+default['zf2']['apache']['template']    = 'zf2-apache2.conf.erb'
+
 default['composer']['install_globally'] = false                               # - Installation method, ':source' or ':package' - default true
 #default['composer']['prefix']                                                # - Location prefix of where the installation files will go if installing globally
 #default['composer']['url']                                                   # - Location of the source

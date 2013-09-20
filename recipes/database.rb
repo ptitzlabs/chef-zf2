@@ -17,20 +17,20 @@
 # limitations under the License.
 #
 
-settings = Zf2.settings(node)
+#node = Zf2.node(node)
 
 database_connection = {
-  :host => settings['database']['host'],
-  :port => settings['database']['port']
+  :host => node['database']['host'],
+  :port => node['database']['port']
 }
 
-case settings['database']['type']
+case node['database']['type']
 when 'mysql'
   include_recipe 'mysql::server'
   include_recipe 'database::mysql'
   database_connection.merge!({ :username => 'root', :password => node['mysql']['server_root_password'] })
 
-  mysql_database settings['database']['name'] do
+  mysql_database node['database']['name'] do
     connection database_connection
     collation 'utf8_bin'
     encoding 'utf8'
@@ -44,11 +44,11 @@ when 'mysql'
     action :drop
   end
 
-  mysql_database_user settings['database']['user'] do
+  mysql_database_user node['database']['user'] do
     connection database_connection
     host '%'
-    password settings['database']['password']
-    database_name settings['database']['name']
+    password node['database']['password']
+    database_name node['database']['name']
     action [:create, :grant]
   end
 else

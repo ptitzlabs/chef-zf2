@@ -17,7 +17,3 @@
 # limitations under the License.
 #
 
-include_recipe 'zf2::php'
-include_recipe 'zf2::composer'
-include_recipe 'zf2::apache2'
-include_recipe 'zf2::database'

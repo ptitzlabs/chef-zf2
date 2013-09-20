@@ -5,15 +5,32 @@ Vagrant.configure("2") do |config|
   # All Vagrant configuration is done here. The most common configuration
   # options are documented and commented below. For a complete reference,
   # please see the online documentation at vagrantup.com.
+  
+  # The path to the Berksfile to use with Vagrant Berkshelf
+  # config.berkshelf.berksfile_path = "./Berksfile"
 
+  # Enabling the Berkshelf plugin. To enable this globally, add this configuration
+  # option to your ~/.vagrant.d/Vagrantfile file
+  config.berkshelf.enabled = true
+
+  # An array of symbols representing groups of cookbook described in the Vagrantfile
+  # to exclusively install and copy to Vagrant's shelf.
+  # config.berkshelf.only = []
+
+  # An array of symbols representing groups of cookbook described in the Vagrantfile
+  # to skip installing and copying to Vagrant's shelf.
+  # config.berkshelf.except = []
+  config.omnibus.chef_version = :latest
+
+  # hostname
   config.vm.hostname = "zf2-berkshelf"
 
   # Every Vagrant virtual environment requires a box to build off of.
-  config.vm.box = "precise32"
+  config.vm.box = "opscode-ubuntu-1204"
 
   # The url from where the 'config.vm.box' box will be fetched if it
   # doesn't already exist on the user's system.
-  config.vm.box_url = "http://files.vagrantup.com/precise32.box"
+  config.vm.box_url = "https://opscode-vm-bento.s3.amazonaws.com/vagrant/opscode_ubuntu-12.04-i386_chef-11.4.4.box"
 
   # Assign this VM to a host-only network IP, allowing you to access it
   # via the IP. Host-only networks can talk to the host machine as well as
@@ -55,20 +72,6 @@ Vagrant.configure("2") do |config|
   config.ssh.max_tries = 40
   config.ssh.timeout   = 120
 
-  # The path to the Berksfile to use with Vagrant Berkshelf
-  # config.berkshelf.berksfile_path = "./Berksfile"
-
-  # Enabling the Berkshelf plugin. To enable this globally, add this configuration
-  # option to your ~/.vagrant.d/Vagrantfile file
-  config.berkshelf.enabled = true
-
-  # An array of symbols representing groups of cookbook described in the Vagrantfile
-  # to exclusively install and copy to Vagrant's shelf.
-  # config.berkshelf.only = []
-
-  # An array of symbols representing groups of cookbook described in the Vagrantfile
-  # to skip installing and copying to Vagrant's shelf.
-  # config.berkshelf.except = []
 
   config.vm.provision :chef_solo do |chef|
     chef.json = {
@@ -81,7 +84,10 @@ Vagrant.configure("2") do |config|
 
     chef.run_list = [
         "recipe[zf2::develop]",
-        "recipe[zf2::default]"
+        "recipe[zf2::default]",
+        "recipe[zf2::php]",
+        "recipe[zf2::composer]",
+        "recipe[zf2::apache2]"
     ]
   end
 end
