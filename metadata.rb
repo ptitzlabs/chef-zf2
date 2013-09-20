@@ -20,7 +20,7 @@ end
 end
 
 # dependencies
-%w{ apache2 database mysql php }.each do |cb|
+%w{ apache2 composer database mysql php }.each do |cb|
   depends cb
 end
 

@@ -17,4 +17,18 @@
 # limitations under the License.
 #
 
+settings = Zf2.settings(node)
+
+include_recipe 'composer'
+
+
+
+Chef::Log.info 'Running composer install'
+directory "#{settings['zf2']['deploy_to']}/vendor" do
+  mode 0755
+end
+
+execute "php composer.phar install -n" do
+  cwd settings['zf2']['deploy_to']
+end
 

@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: zf2
-# Recipe:: default
+# Recipe:: develop
 #
 # Copyright (C) 2013 Triple-networks
 # 
@@ -17,7 +17,6 @@
 # limitations under the License.
 #
 
-include_recipe 'zf2::php'
-include_recipe 'zf2::composer'
-include_recipe 'zf2::apache2'
-include_recipe 'zf2::database'
+include_recipe 'ntp'
+include_recipe 'git'
+include_recipe 'vim'

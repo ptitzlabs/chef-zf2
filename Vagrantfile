@@ -80,6 +80,7 @@ Vagrant.configure("2") do |config|
     }
 
     chef.run_list = [
+        "recipe[zf2::develop]",
         "recipe[zf2::default]"
     ]
   end
