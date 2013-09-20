@@ -29,6 +29,7 @@ tmtags
 *.tmproj
 .project
 .settings
+.idea
 mkmf.log
 
 ## COMPILED ##
@@ -53,6 +54,7 @@ test/*
 features/*
 Guardfile
 Procfile
+Rakefile
 
 # SCM #
 #######
