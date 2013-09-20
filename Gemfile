@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'berkshelf'
+gem 'berkshelf', '~> 2.0.10'
 gem 'thor-foodcritic'
-gem 'test-kitchen', :group => :integration
-gem 'kitchen-vagrant', :group => :integration
+gem 'kitchen-vagrant', '~> 0.11.1', :group => :integration
+gem 'test-kitchen', '~> 1.0.0.beta.3', :group => :integration
