@@ -15,7 +15,7 @@ version          '0.1.0'
 end
 
 # debug/build/server
-%w{ git ntp vim }.each do |cb|
+%w{ apt git ntp vim }.each do |cb|
   depends cb
 end
 
