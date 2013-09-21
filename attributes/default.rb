@@ -31,4 +31,9 @@ default['composer']['install_globally'] = false                               # 
 default['composer']['install_dir']      = node['zf2']['deploy_to']            # - Installation target directory (absolute or relative path) if installing locally
 
 
-default['zf2']['database']['type']      = 'mysql'
+default['zf2']['database']['host']     = "localhost"
+default['zf2']['database']['name']     = "zf2"
+default['zf2']['database']['password'] = "changeit"
+default['zf2']['database']['port']     = 3306
+default['zf2']['database']['type']     = "mysql"
+default['zf2']['database']['user']     = "zf2"

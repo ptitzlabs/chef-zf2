@@ -86,6 +86,7 @@ Vagrant.configure("2") do |config|
     chef.run_list = [
         "recipe[zf2::develop]",
         "recipe[zf2::default]",
+        "recipe[zf2::database]",
         "recipe[zf2::php]",
         "recipe[zf2::composer]",
         "recipe[zf2::apache2]"

@@ -17,20 +17,20 @@
 # limitations under the License.
 #
 
-#node = Zf2.node(node)
+#node['zf2'] = Zf2.node['zf2'](node['zf2'])
 
 database_connection = {
-  :host => node['database']['host'],
-  :port => node['database']['port']
+  :host => node['zf2']['database']['host'],
+  :port => node['zf2']['database']['port']
 }
 
-case node['database']['type']
+case node['zf2']['database']['type']
 when 'mysql'
   include_recipe 'mysql::server'
   include_recipe 'database::mysql'
   database_connection.merge!({ :username => 'root', :password => node['mysql']['server_root_password'] })
 
-  mysql_database node['database']['name'] do
+  mysql_database node['zf2']['database']['name'] do
     connection database_connection
     collation 'utf8_bin'
     encoding 'utf8'
@@ -44,13 +44,15 @@ when 'mysql'
     action :drop
   end
 
-  mysql_database_user node['database']['user'] do
+  mysql_database_user node['zf2']['database']['user'] do
     connection database_connection
     host '%'
-    password node['database']['password']
-    database_name node['database']['name']
+    password node['zf2']['database']['password']
+    database_name node['zf2']['database']['name']
     action [:create, :grant]
   end
 else
   Chef::Log.warn('Unsupported database type.')
 end
+
+
